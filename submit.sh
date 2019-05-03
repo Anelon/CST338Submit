@@ -12,6 +12,7 @@
 astyle="$HOME/bin/astyle" 
 flags="-A1s3" 
 files="*.java"
+#change to false if you want your code to be formated
 keepOrigFormat=true
 #Submitter name
 name="AndrewBell"
@@ -65,7 +66,7 @@ else
    java Main >> "$filename"
 fi
 printf "   ---------- paste of run ----------*/\n\n" >> "$filename"
-if [ $keepOrigFormat ]; then
+if [ "$keepOrigFormat" = true ]; then
    for name in *.orig
    do
       echo "Reverting ${name%.*} to origional format"
