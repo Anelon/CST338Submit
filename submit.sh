@@ -1,18 +1,33 @@
+#!/bin/bash
+
 #########################
 #      Andrew Bell      #
 # Input submission Prep #
 #########################
 
 
+#Using AStyle to reformat code
+#http://astyle.sourceforge.net/
+#for download and documentation
+astyle="$HOME/bin/astyle" 
+flags="-A1s3" 
+files="*.java"
+keepOrigFormat=true
+#Submitter name
+name="AndrewBell"
 #get directory name
 dirName=${PWD##*/}
-name="AndrewBell"
+#Output file name format
 filename="$name-$dirName.txt"
 #temp files for storing intermediate steps
 tempFile="temp.txt"
 sedFile="sedFile.txt"
+
+
+#Run AStyle formating
+$astyle $flags $files
 #copy all of the code files
-for name in *.java
+for name in $files
 do
    printf "/*------- File: $name -------*/\n" > "$filename"
    cat "$name" >> "$filename"
@@ -50,3 +65,10 @@ else
    java Main >> "$filename"
 fi
 printf "   ---------- paste of run ----------*/\n\n" >> "$filename"
+if [ $keepOrigFormat ]; then
+   for name in *.orig
+   do
+      echo "Reverting ${name%.*} to origional format"
+      mv $name "${name%.*}"
+   done
+fi
