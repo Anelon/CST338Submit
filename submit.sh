@@ -8,6 +8,7 @@
 
 #Using AStyle to reformat code
 #http://astyle.sourceforge.net/
+#used "sudo make prefix=$HOME install" to install in home directory
 #for download and documentation
 astyle="$HOME/bin/astyle" 
 flags="-A1s3" 
