@@ -43,7 +43,7 @@ if [ -f input1 ]; then
    #get all of the input files
    for name in input*
    do
-      printf "/* ---------- $name ----------*/\n\n" >> "$filename"
+      printf " ---------- $name ----------\n\n" >> "$filename"
       echo "$name"
       java Main < "$name" > "$tempFile"
       #put input where it is supposed to go
